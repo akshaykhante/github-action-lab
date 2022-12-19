@@ -1,13 +1,29 @@
-name: sample workflow
-run-name: ${{ github.event.issue }} sample workflow
+name: Terraform Plan and Apply
+run-name: Terraform Plan and Apply
 on:
-  push
+  push:
+    branches:
+      - main
 jobs:
-  display_message:
+  plan_deploy:
     runs-on: ubuntu-latest
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secerts.AWS_SECRET_ACCESS_KEY }}
+      REGION: "us-east-1"
+
     steps:
-      - name: hello world
-        run: echo "Hello World!"
-      - name: display hostname
-        run: hostname
+      - name: Get Terraform
+        uses: actions/checkout@v3 |
+          hashicorp/setup-terraform@v1
+
+      - name: Terraform init
+        run: terraform init
+
+      - name: Terraform Plan
+        run: terraform plan -var-file="variables.tfvars"
+
+      - name: Terraform Apply
+        run: terraform apply -var-file="variables.tfvars" -auto-approve
+
   
