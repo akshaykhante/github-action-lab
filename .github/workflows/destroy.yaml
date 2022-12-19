@@ -1,9 +1,7 @@
-name: Terraform Plan and Apply
-run-name: Terraform Plan and Apply
+name: Terraform Destroy
+run-name: Terraform Destroy
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch
 jobs:
   plan_deploy:
     runs-on: ubuntu-latest
@@ -21,13 +19,9 @@ jobs:
 
       - name: Terraform init
         run: terraform init
-
-      - name: Terraform Plan
-        id: plan
-        run: terraform plan -var-file="variables.tfvars"
-
-      - name: Terraform Apply
-        id: apply
-        run: terraform apply -var-file="variables.tfvars" -auto-approve
+        
+      - name: Terraform destroy
+        id: destroy
+        run: terraform destroy -var-file="variables.tfvars" -auto-approve
 
   
