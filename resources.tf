@@ -1,6 +1,6 @@
 resource "aws_vpc" "test_vpc_ak" {
   cidr_block = "10.30.0.0/16"
-  tags = {"Name" = "test_vpc_ak"}
+  tags = {"Name" = "test_vpc_akshay"}
 }
 
 resource "aws_subnet" "test_subnet_ak" {
