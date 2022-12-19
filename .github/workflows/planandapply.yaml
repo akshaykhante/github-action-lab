@@ -10,12 +10,14 @@ jobs:
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secerts.AWS_SECRET_ACCESS_KEY }}
-      REGION: "us-east-1"
+      REGION: us-east-1
 
     steps:
-      - name: Get Terraform
-        uses: actions/checkout@v3 |
-          hashicorp/setup-terraform@v1
+      - name: checkout
+        uses: actions/checkout@v3 
+        
+      - name: Get terraform
+        uses: hashicorp/setup-teraform@v1
 
       - name: Terraform init
         run: terraform init
