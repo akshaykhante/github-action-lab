@@ -1,7 +1,8 @@
-# output "instance_arn" {
-#   value = [for i in aws_instance.test_instance: i.arn]
-# }
+output "vpc_id" {
+  value = aws_vpc.test_vpc_ak.id
+  sensitive = true
+}
 
-# output "instance_public_dns" {
-#   value = [for i in aws_instance.test_instance: i.public_dns]
-# }
+output "subnet_ids" {
+  value = [for i in aws_subnet.test_subnet_ak: i.id]
+}
