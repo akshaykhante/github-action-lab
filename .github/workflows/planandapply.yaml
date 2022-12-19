@@ -1,0 +1,13 @@
+name: sample workflow
+run-name: ${{ github.actor }} sample workflow
+on:
+  push
+jobs:
+  display_message:
+  runs-on: ubuntu-latest
+  steps:
+    - name: hello world
+      run: echo "Hello World!"
+    - name: display hostname
+      run: hostname
+  
