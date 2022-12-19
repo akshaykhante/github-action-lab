@@ -1,5 +1,5 @@
 name: sample workflow
-run-name: ${{ github.actor }} sample workflow
+run-name: ${{ github.event.issue }} sample workflow
 on:
   push
 jobs:
